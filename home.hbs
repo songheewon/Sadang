@@ -1,0 +1,101 @@
+{{!< default}} {{#contentFor 'title' }}{{ meta_title }}{{/contentFor}} {{!-- Show the custom homepage content --}} <div
+  class="c-hero__wrap">
+  <div class="c-hero{{#unless @site.cover_image}} c-hero--content-only{{/unless}}">
+    {{#if @site.cover_image}}
+    <div class="c-hero__media">
+      <img class="c-hero__image" src="{{img_url @site.cover_image }}" alt="{{ @site.brand_site_title }}">
+    </div>
+    {{/if}}
+    <div class="c-hero__tx">
+      <div class="c-hero__support">{{ @site.brand_site_title }}</div>
+      <div class="c-hero__content--wrap">
+        <div class="c-hero__content">{{ @site.brand_site_description }}</div>
+      </div>
+      <div class="c-hero__content--wrap">
+        <div class="c-hero__content-secondary">{{@custom.brand_site_description_secondary}}</div>
+      </div>
+      {{#if @price.use}}
+      {{#unless @member.paid}}
+      <div class="c-hero__membership">
+        <a href="{{ @site.url }}/membership/" class="bg-accent c-hero__membership--link">{{t 'Membership' }}</a>
+      </div>
+      {{/unless}}
+      {{/if}}
+    </div>
+  </div>
+  </div>
+
+  {{#unless @member}}
+  <div class="c-subscribe__main">
+    <h2 class="c-subscribe__main--title">{{#if @site.subscription_form_title}}
+      {{@site.subscription_form_title}}
+      {{else if @site.brand_site_title}}
+      {{@site.brand_site_title}}
+      {{else}}
+      {{t '{siteTitle} Newsletter' siteTitle=@site.title}}
+      {{/if}}</h2>
+    <div class="c-subscribe__main--form-container">
+      <form data-members-form="subscribe" class="c-subscribe__main--form">
+        <label for="subscribe-home-intro" class="u-hidden-visually">{{t 'Your email address' }}</label>
+        <input type="email" name="email" class="c-subscribe__main--form-input" id="subscribe-home-intro"
+          placeholder="{{t 'Your email address' }}" required data-members-email>
+        <button type="submit" class="c-subscribe__main--form-submit">{{t 'Subscribe'}}</button>
+      </form>
+    </div>
+  </div>
+  {{/unless}}
+
+  <div class="c-home-section">
+
+  </div>
+
+
+
+  <div class="c-home__post-tab">
+    <div class="o-grid">
+      <div class="o-grid__col o-grid__col--center o-grid__col--9-10-m o-grid__col--3-4-l">
+        <div class="c-home__post-tabs">
+          <div class="c-home__post-tab--link current" data-tab="home-post-tab-1">{{t 'Recent Posts' }}</div>
+          <div class="c-home__post-tab--link" data-tab="home-post-tab-2">{{t 'Featured Posts' }}</div>
+        </div>
+      </div>
+    </div>
+    <div id="home-post-tab-1" class="c-home__post-tab--content current">
+      {{> home/recent-posts }}
+      <div class="o-grid">
+        {{ pagination }}
+      </div>
+    </div>
+    <div id="home-post-tab-2" class="c-home__post-tab--content">{{> home/featured-posts }}</div>
+  </div>
+
+
+
+  {{#unless @member}}
+  <div class="c-home__promotion--container">
+    <div class="c-home__promotion">
+      <div class="c-home__promotion--content">{{#if @site.subscription_form_title}}
+        {{@site.subscription_form_title}}
+        {{else if @site.brand_site_title}}
+        {{@site.brand_site_title}}
+        {{else}}
+        {{t '{siteTitle} Newsletter' siteTitle=@site.title}}
+        {{/if}}</div>
+      {{#if @price.use}}
+      {{#link href="/membership/" class="c-home__promotion--link"}}{{t 'Membership' }}{{/link}}
+      {{else}}
+      {{#link href="/signin/" class="c-home__promotion--link"}}{{t 'Subscribe'}}{{/link}}
+      {{/if}}
+    </div>
+  </div>
+  {{/unless}}
+
+  {{#if @site.home_visible_shop_section}}
+  <div class="c-home-products-carousel">
+    <div class="o-grid">
+      <div class="o-grid__col o-grid__col--full">
+        {{> common/products/carousel-section which="home" nav="true" }}
+      </div>
+    </div>
+  </div>
+  {{/if}}
