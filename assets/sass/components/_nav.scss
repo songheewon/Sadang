@@ -39,6 +39,12 @@
 }
 
 .c-nav {
+  &__subscribe {
+    background-color: var(--accent-color);
+    margin-left: 15px;
+    padding: 5px 10px;
+    border-radius: 10px;
+  }
   @include mq($until: desktop) {
     width: 100%;
     padding-left: $space-32;
