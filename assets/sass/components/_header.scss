@@ -235,9 +235,16 @@
   }
 
   &--subscribe {
+    display: block;
+    text-decoration: none;
     background-color: #181A20;
       text-align: center;
       color: white;
+
+    // .c-nav__link 가 flex + justify 기본값이라 가운데 정렬이 깨짐
+    &.c-nav__link {
+      justify-content: center;
+    }
       font-size: 16px;
       font-weight: 700;
       line-height: 16px;
@@ -299,9 +306,16 @@
   }
 
   &--subscribe {
+    display: block;
+    text-decoration: none;
     background-color: #181A20;
       text-align: center;
       color: white;
+
+    // .c-nav__link 가 flex + justify 기본값이라 가운데 정렬이 깨짐
+    &.c-nav__link {
+      justify-content: center;
+    }
       font-size: 16px;
       font-weight: 700;
       line-height: 16px;

@@ -109,9 +109,11 @@
       </div>
       <div class="c-header-drawer__main">
         <div class="c-header-drawer__main--header">
-          <div class="c-header-mobile__nav--subscribe">
-            구독하기
-          </div>
+          {{#if @price.use}}
+          {{#unless @member.paid}}
+          <a href="/membership" class="c-header-mobile__nav--subscribe c-nav__link" style="font-size: 18px !important;">구독하기</a>
+          {{/unless}}
+          {{/if}}
           {{!-- Search form --}}
           <div class="c-header__search--outer">
             <div class="c-header__search">
